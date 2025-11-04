@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulf Coast Fishing Adventures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://getchat.app/assets/img/favicon/android-icon-36x36.png">
+    <link rel="icon" href="assets/images/custom-favicon.png" type="image/png">
+
+    <style>
+        /* CSS Reset and Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary-blue: #0A3D9E; /* Deep Blue from Veteran section */
+            --accent-orange: #FF6B00; /* Orange for buttons/accents */
+            --dark-bg: #1A1E24; /* Dark background from booking/footer */
+            --light-gray: #f7f7f7; /* Very light gray for packages section */
+            --location-bg: #EAE6DF; /* Beige/light gray for location section */
+            --text-dark: #333;
+            --text-light: #fff;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .heading-separator::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-orange);
+            margin: 10px auto 30px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: var(--accent-orange);
+            color: var(--text-light) !important;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #e55c00;
+        }
+
+        .btn-secondary {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background-color: var(--primary-blue);
+            color: var(--text-light) !important;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: auto; /* Push button to bottom of card */
+        }
+        .btn-secondary:hover {
+            background-color: #083282;
+        }
+
+        /* 1. Hero/Header Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://readdy.ai/api/search-image?query=Professional%20fishing%20charter%20boat%20on%20crystal%20clear%20Gulf%20of%20Mexico%20waters%20with%20experienced%20captain%20at%20helm%2C%20blue%20ocean%20horizon%2C%20fishing%20equipment%20visible%2C%20bright%20sunny%20day%2C%20professional%20maritime%20photography%2C%20high%20quality%20realistic%20image&width=1920&height=1080&seq=hero-bg&orientation=landscape') no-repeat center center/cover;
+            color: var(--text-light);
+            padding-bottom: 120px;
+            position: relative;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            color: var(--text-light);
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            padding-top: 120px;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 4em;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* 2. Charter Packages Section */
+        .packages-section {
+            padding: 80px 0;
+            background-color: #cfd0d5;
+            /*background-color: var(--light-gray);*/
+        }
+
+        .packages-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+
+        .package-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .package-card {
+            background-color: var(--text-light);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 450px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-image-placeholder {
+            height: 370px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-size: cover;
+            background-position: center;
+        }
+        .card-image-1 { background-image: url('https://images.squarespace-cdn.com/content/v1/67f28e74c9c96f2464882a51/9faea008-cb71-4c9b-ae4f-cd62744d0e51/IMG_0751.jp'); }
+        .card-image-2 { background-image: url('https://images.squarespace-cdn.com/content/v1/67f28e74c9c96f2464882a51/d58375dd-f580-409c-9042-016a02bd9f28/American+Gulf+Charters+-+Grouper+Fishing.png'); }
+
+
+        .package-card h3 {
+            font-size: 1.5em;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .price {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: var(--accent-orange);
+            margin-bottom: 15px;
+        }
+
+        .package-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 25px;
+            flex-grow: 1;
+        }
+        .package-card li {
+            padding: 5px 0;
+            font-size: 1.1em;
+            color: var(--text-dark);
+        }
+        .package-card li i {
+            color: var(--primary-blue);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* 3. Target Species Section */
+        .species-section {
+            padding: 60px 0;
+        }
+        .species-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .species-section h2 span {
+            color: #C80D82; /* Pink/Purple accent from image */
+            font-weight: bold;
+        }
+
+        .species-carousel {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .species-item {
+            width: 200px;
+            height: 200px;
+            border-radius: 5px;
+            background-color: #aaa;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Placeholder Images for Species */
+        .species-item:nth-child(1) { background-image: url('https://images.squarespace-cdn.com/content/v1/67f28e74c9c96f2464882a51/2de3e700-fe30-4206-b58e-155ab78fa520/IMG_9385.jpeg'); }
+        .species-item:nth-child(2) { background-image: url('https://images.squarespace-cdn.com/content/v1/67f28e74c9c96f2464882a51/aaa25bd2-d565-43ba-a9c6-8ee3ce3cbe49/IMG_3497.jpg'); }
+        .species-item:nth-child(3) { background-image: url('https://images.squarespace-cdn.com/content/v1/67f28e74c9c96f2464882a51/8f93c314-382e-423b-b6ba-5ec6cf161dd4/americangulffishingchartersmangrovesnapperkid.jpg'); }
+        .species-item:nth-child(4) { background-image: url('https://images.squarespace-cdn.com/content/v1/67f28e74c9c96f2464882a51/9ad62377-a814-42a7-9a66-b42d36abb765/American+Gulf+Fishing+Charters+Brittany+.jpg'); }
+
+        /* 4. Veteran-Owned Section */
+        .veteran-section {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            padding: 0;
+            min-height: 500px;
+            margin-top: 60px;
+        }
+
+        .veteran-content {
+            flex: 1;
+            padding: 40px 5%;
+            padding-right: 0;
+            text-align: ;
+        }
+
+        .veteran-content h2 {
+            font-size: 3.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: #C80D82; /* Pink/Purple accent for title */
+        }
+        .veteran-content p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .veteran-image {
+            width: 500px;
+            height: 500px;
+            flex-shrink: 0;
+            background: url('https://readdy.ai/api/search-image?query=Professional%20fishing%20charter%20captain%20at%20boat%20helm%20with%20Gulf%20of%20Mexico%20in%20background%2C%20experienced%20maritime%20professional%2C%20fishing%20boat%20bridge%2C%20nautical%20equipment%2C%20confident%20captain%20portrait%2C%20realistic%20photography&width=600&height=800&seq=captain-portrait&orientation=portrait') no-repeat center center/cover;
+        }
+
+        /* 5. Locations Section */
+        .locations-section {
+            background-color: var(--location-bg);
+            padding: 60px 0;
+        }
+
+        .locations-header {
+            text-align: center;
+            color: gray;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+        }
+        .locations-header i {
+            color: var(--accent-orange);
+            margin-right: 5px;
+        }
+
+        .locations-section h2 {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .locations-section h2 span {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .location-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .location-card {
+            background-color: var(--text-light);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            width: 500px;
+            padding: 20px;
+        }
+        .location-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        .map-placeholder {
+            height: 250px;
+            background-color: #c9e8e9; /* Map color approximation */
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            text-align: center;
+            padding-top: 100px;
+            color: #666;
+        }
+
+        /* 6. Book Your Adventure Section (Dark Footer-like) */
+        .book-adventure-section {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 60px 0;
+        }
+        .book-adventure-section h2 {
+            color: var(--text-light);
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+        .book-adventure-section h2 span {
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 80px;
+        }
+
+        .contact-info h3 {
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+        .social-icons a {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--accent-orange);
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            background-color: #2c2f33;
+            color: var(--text-light);
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .booking-form .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* 7. Footer */
+        footer {
+            background-color: #444;
+            color: #aaa;
+            padding: 30px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        footer a {
+            color: #aaa;
+            margin: 0 10px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #555;
+            margin-bottom: 20px;
+        }
+        .footer-links div {
+            text-align: left;
+        }
+
+        @media (max-width: 992px) {
+            .package-cards-container, .location-cards-container, .booking-grid, .veteran-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .package-card, .location-card {
+                width: 90%;
+                max-width: 450px;
+            }
+
+            .veteran-image, .veteran-content {
+                width: 100%;
+                padding: 30px 5%;
+                text-align: center;
+            }
+            .veteran-image {
+                height: 300px;
+            }
+
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="navbar container">
+            <div class="logo"><img src="https://i.postimg.cc/7Z2vMsJv/logowb.png" alt="American Gulf Fishing Charters Logo" style="height:45px; width:120px "></div>
+            <!-- <div class="logo"><img src="https://i.postimg.cc/7Z2vMsJv/logowb.png" alt="American Gulf Fishing Charters Logo" class="h-10 w-20"></div> -->
+            <nav class="nav-links">
+                <a href="#">Home</a>
+
+                <a href="#packages">Packages</a>
+                <a href="#species">Species</a>
+                <a href="#locations">Locations</a>
+                <a href="#">Gallery</a>
+                 <a href="#">Contact</a>
+                
+            </nav>
+            <a href="#booking" class="btn-primary btn-signup">Book Now</a>
+        </div>
+        <div class="hero-content container">
+            <h1>Gulf Coast <span style="color:var(--accent-orange);">Fishing Adventures</span></h1>
+            <p>Experience the thrill of deep-sea fishing with our expert captains.</p>
+            <a href="#booking" class="btn-primary">Book Your Charter</a>
+        </div>
+    </header>
+
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <h2 class="text-center heading-separator">Charter Packages</h2>
+            <div class="package-cards-container">
+                <div class="package-card">
+                    <div class="card-image-placeholder card-image-1"></div>
+                    <h3>Full Day Charter (8 Hours)</h3>
+                    <p class="price">$1,400 <small>| Up to 6 people</small></p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> **8 Hours** on the water</li>
+                        <li><i class="fas fa-check-circle"></i> Max **6** people</li>
+                        <li><i class="fas fa-check-circle"></i> Includes all gear and bait</li>
+                        <li><i class="fas fa-check-circle"></i> Ideal for deep-sea targets</li>
+                    </ul>
+                    <a href="#" class="btn-secondary">View Details</a>
+                </div>
+
+                <div class="package-card">
+                    <div class="card-image-placeholder card-image-2"></div>
+                    <h3>Half Day Charter (4 Hours)</h3>
+                    <p class="price">$1,200 <small>| Up to 4 people</small></p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> **4 Hours** on the water</li>
+                        <li><i class="fas fa-check-circle"></i> Max **4** people</li>
+                        <li><i class="fas fa-check-circle"></i> Perfect for families and beginners</li>
+                        <li><i class="fas fa-check-circle"></i> Focus on near-shore reefs</li>
+                    </ul>
+                    <a href="#" class="btn-secondary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="species" class="species-section">
+        <div class="container">
+            <h2 class="text-center heading-separator">Target <span>Species.</span></h2>
+            <div class="species-carousel">
+                <div class="species-item" title="Red Snapper">
+                    <h4 style="color:white;">Red Snapper</h4>
+                </div>
+                <div class="species-item" title="Grouper">
+                    <h4 style="color:white;text-align: left;">Grouper</h4>
+                </div>
+                <div class="species-item" title="Mangrove"><h4 style="color:white;">Mangrove</h4></div>
+                <div class="species-item" title="Cobia">
+                    <h4 style="color:white;">Cobia</h4>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="veteran-section">
+        <div class="veteran-content">
+            <h2 class="veteran-owned-title">Veteran-Owned</h2>
+            <p>The spirit of service and discipline guides our operations. We are proud to be a **veteran-owned** and operated business, ensuring every trip is conducted with the utmost **professionalism and safety**.</p>
+            <p>Our captain served in the U.S. Navy and brings the precision and focus required for a successful and memorable adventure on the Gulf Coast waters.</p>
+            <a href="#" class="btn-primary">Learn Our Story</a>
+        </div>
+        <div class="veteran-image">
+            </div>
+    </section>
+
+    <section id="locations" class="locations-section">
+        <div class="container">
+            <div class="locations-header">
+                <i class="fas fa-map-marker-alt"></i> LOCATED IN THE HEART OF THE GULF COAST
+            </div>
+            <h2 class="text-center heading-separator">Departure <span>Locations</span></h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <div style="background-color: #a9a7c3;border: 1px solid #ddd;border-radius: 10px;padding: 20px;width: 400px;box-shadow: 0 2px 6px rgba(0,0,0,0.1);text-align: left;">
+
+  <!-- <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: left;"> -->
+    <h3 style="color: #1f2937; margin-bottom: 10px;">Coastal Marina, FL</h3>
+    <div style="width: 100%; height: 180px; border-radius: 6px; overflow: hidden; margin-bottom: 10px;">
+  <iframe 
+    width="100%" 
+    height="180" 
+    style="border:0;"
+    loading="lazy" 
+    allowfullscreen 
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q=123+Marina+Blvd,+Coastal+City,+FL+32541&output=embed">
+  </iframe>
+</div>
+
+    <!-- <div style="width: 100%; height: 180px; background-color: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 14px; border-radius: 6px; margin-bottom: 10px;">
+      Placeholder Map Image
+    </div> -->
+    <p style="margin: 5px 0;"><strong>Address:</strong> 123 Marina Blvd, Coastal City, FL 32541</p>
+    <p style="margin: 5px 0; color: #4b5563;">Easy access with ample parking. Closest to near-shore fishing spots.</p>
+  </div>
+  <div style="background-color: #a9a7c3;border: 1px solid #ddd;border-radius: 10px;padding: 20px;width: 400px;box-shadow: 0 2px 6px rgba(0,0,0,0.1);text-align: left;">
+
+  <!-- <div style="border: 1px solid #ddd; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: left;"> -->
+    <h3 style="color: #1f2937; margin-bottom: 10px;">Deepwater Dock, FL</h3>
+    <div style="width: 100%; height: 180px; border-radius: 6px; overflow: hidden; margin-bottom: 10px;">
+  <iframe
+    width="100%"
+    height="180"
+    style="border:0;"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q=456+Deep+Sea+Way,+Fishermen's+Landing,+FL+32542&output=embed">
+  </iframe>
+</div>
+
+    <!-- <div style="width: 100%; height: 180px; background-color: #e5e7eb; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 14px; border-radius: 6px; margin-bottom: 10px;">
+      Placeholder Map Image
+    </div> -->
+    <p style="margin: 5px 0;"><strong>Address:</strong> 456 Deep Sea Way, Fishermen's Landing, FL 32542</p>
+    <p style="margin: 5px 0; color: #4b5563;">Ideal location for longer, deep-sea excursions and offshore trips.</p>
+  </div>
+
+</div>
+
+            <!-- <div class="location-cards-container">
+                <div class="location-card">
+                    <h3>Coastal Marina, FL</h3>
+                    <div class="map-placeholder">
+
+                         [Placeholder Map Image]
+                    </div> 
+                    <p><strong>Address:</strong> 123 Marina Blvd, Coastal City, FL 32541</p>
+                    <p>Easy access with ample parking. Closest to near-shore fishing spots.</p>
+                </div>
+
+                <div class="location-card">
+                    <h3>Deepwater Dock, FL</h3>
+                    <div class="map-placeholder">
+                        [Placeholder Map Image]
+                    </div>
+                    <p><strong>Address:</strong> 456 Deep Sea Way, Fishermen's Landing, FL 32542</p>
+                    <p>Ideal location for longer, deep-sea excursions and offshore trips.</p>
+                </div> 
+            </div>-->
+        </div>
+    </section>
+
+    <section id="booking" class="book-adventure-section">
+        <div class="container">
+            <h2 class="text-center">Book Your <span>Adventure</span></h2>
+            <div class="booking-grid">
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <p>Ready to reel in your catch? Fill out the form or reach out directly!</p>
+                    <img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" alt="Map">
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                    <p><strong>Email:</strong> info@gulfcoastfishing.com</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="booking-form">
+                    <form id="bookingForm">
+                        <input type="date" id="dateInput" required>
+                        <select id="packageSelect" required>
+                            <option value="">Select Package Type</option>
+                            <option value="full">Full Day Charter</option>
+                            <option value="half">Half Day Charter</option>
+                        </select>
+                        <input type="number" id="guestsInput" placeholder="Number of Guests (Max 6)" min="1" max="6" required>
+                        <button type="submit" class="btn-primary">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <footer style="background-color: #bec3c7; padding: 60px 20px; font-family: Arial, sans-serif;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      
+      <!-- Logo & About -->
+      <div style="flex: 1 1 300px; min-width: 250px;">
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+          <img src="https://i.postimg.cc/7Z2vMsJv/logowb.png" alt="American Gulf Fishing Charters" style="height: 45px; width: 120px;">
+        </div>
+        <p style="color: #222528; font-size: 15px; line-height: 1.6; text-align: justify; margin: 0;">
+          Experience the best offshore fishing the Gulf of Mexico has to offer with our expert captains
+          and professional charter services.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div style="flex: 1 1 200px; min-width: 180px;">
+        <h5 style="color: #222528; font-size: 18px; margin-bottom: 15px; font-weight: 600;">Quick Links</h5>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="#home" style="color: #222528; text-decoration: none;">Home</a>
+          <a href="#charters" style="color: #222528; text-decoration: none;">Packages</a>
+          <a href="#species" style="color: #222528; text-decoration: none;">Locations</a>
+          <a href="#about" style="color: #222528; text-decoration: none;">Species</a>
+          <a href="#about" style="color: #222528; text-decoration: none;">Gallery</a>
+
+          <a href="#contact" style="color: #222528; text-decoration: none;">Contact</a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div style="flex: 1 1 200px; min-width: 180px;">
+        <h5 style="color: #222528; font-size: 18px; margin-bottom: 15px; font-weight: 600;">Services</h5>
+        <div style="display: flex; flex-direction: column; gap: 8px; color: #222528;">
+          <span>Half-Day Charters</span>
+          <span>Full-Day Charters</span>
+          <span>Group Fishing</span>
+          <span>Corporate Events</span>
+          <span>Fish Cleaning</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div style="border-top: 1px solid #999; margin-top: 40px; padding-top: 20px; display: flex; justify-content: center;">
+      <p style="color: #222528; font-size: 14px; margin: 0; text-align: center;">
+        © 2025 American Gulf Fishing Charters. All rights reserved by Zannatul.
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('bookingForm');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const date = document.getElementById('dateInput').value;
+                const pkg = document.getElementById('packageSelect').value;
+                const guests = document.getElementById('guestsInput').value;
+
+                if (!date || !pkg || !guests) {
+                    alert('Please fill out all fields in the booking form.');
+                    return;
+                }
+
+                if (guests > 6) {
+                    alert('Maximum 6 guests allowed per charter.');
+                    return;
+                }
+
+                // In a real application, this data would be sent to a server.
+                console.log('Booking Request:', { date, package: pkg, guests });
+                alert(`Booking for ${pkg} charter on ${date} for ${guests} people has been submitted! We will contact you shortly.`);
+
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
